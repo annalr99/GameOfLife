@@ -48,8 +48,19 @@
             let tablero = document.getElementById("tablero")
             tablero.style.width = lado * columnas + "px"
             tablero.style.height = lado * filas + "px"
-        })();   
-    </script>
+        })();
     
+       
+        function cambiarEstado(x, y) {
+
+        let celula = document.getElementById(`celula-${x + "-" + y}`)
+            if (celula.style.background != "black") {
+                celula.style.background = "black"
+            } else {
+                celula.style.background = ""
+            }
+        }
+    </script>
+   
 </body>
 </html>
