@@ -1,7 +1,7 @@
 # GameOfLife
 
 
-to run the game of life we have to run a server we specifically run live server from visual studio code
+wen run our game in a local host
 
 the languages used are HTML, CSS AND Javascript
 
