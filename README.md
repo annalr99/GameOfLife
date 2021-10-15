@@ -1,7 +1,7 @@
 # GameOfLife
 
 
-# wen run our game in a web server
+# when run our game in a web server
 
 # the languages used are HTML, CSS AND Javascript
 
