@@ -23,7 +23,7 @@
     <h1>Game Of Life</h1>
     <input type='button' onClick='random()' Value='random'/>
     <input type='button' onClick='intercambiarReproduccion()' Value='Play/Stop' />
-    <input type='button' onClick='cañon()' Value='cañon infinito'/>
+    <input type='button' onClick='cannon()' Value='cañon infinito'/>
     <input type='button' onClick='siguienteEstado()' Value='siguiente Estado>>'/>
     <input type='button' onClick='limpiar()' Value='limpiar'/>
 
@@ -152,8 +152,8 @@ function intercambiarReproduccion(){
             }
         }
     }
-}function cañon() {
-    let cañon =[
+}function cannon() {
+    let canon =[
         [
             false,
             false,
@@ -1528,7 +1528,7 @@ function intercambiarReproduccion(){
         for (let y = 0; y < columnas; y++) {
             let vivas = contarVivas(x, y)
             let celula = document.getElementById(`celula-${x + "-" + y}`)
-            if (!cañon[x][y]) {
+            if (!canon[x][y]) {
                 celula.style.background = "white"
             } else {
                 celula.style.background = "black"
