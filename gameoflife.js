@@ -38,24 +38,24 @@ function intercambiarReproduccion() {
 generarTablero()
 
 function generarTablero() {
-    let html = "<table cellpadding=0 cellspacing=0 id= 'tablero' finalborder=5>" //generamos el tablero
+    let table = document.createElement('table')
+    let tablero = "<table cellpadding=0 cellspacing=0 id= 'tablero' finalborder=5>" //generamos el tablero
     for (let y = 0; y < filas; y++) {
-        html += "<tr>"
+        tablero += "<tr>"
         for (let x = 0; x < columnas; x++) {
-            html += `<td id="celula-${x + "-" + y}" onmouseup ="cambiarEstado(${x},${y})">`
-            html += "</td>"
+            tablero += `<td id="celula-${x + "-" + y}" onmouseup ="cambiarEstado(${x},${y})">`
+            tablero += "</td>"
         }
-        html += "</tr>"
+        tablero += "</tr>"
     }
-    html + -"</table>"
+    tablero + -"</table>"
     let contenedor = document.getElementById("contenedor-tablero")
-    contenedor.innerHTML = html
+    contenedor.innerHTML = tablero
     let tablero = document.getElementById("tablero")
     tablero.style.width = lado * columnas + "px"
     tablero.style.height = lado * filas + "px"
     fotografiar()
 }
-
 
 function cambiarEstado(x, y) {
 
@@ -149,8 +149,8 @@ function random() {
     }
 }
 
-function cañon() {
-    let cañon =[
+function cannon() {
+    let cannon =[
         [
             false,
             false,
