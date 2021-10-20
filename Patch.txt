@@ -1,0 +1,15 @@
+Carta de desarrolladores de GameOfLife
+
+Version 1
+
+Salida de nuestro proyecto!
+
+Opciones de juego: 
+
+	· Random : Crear un universo aleatorio.
+	· Play/Stop : Visualizar como avanza el universo y pararlo cuando queramos.
+	· Limpiar : Eliminar el universo por completo.
+	· Anterior Estado : Ir un segundo atras en el tiempo.
+	· Cañon infinito : Mapa de universo de un cañon.
+
+Espero que les guste nuestra primera version ! 
