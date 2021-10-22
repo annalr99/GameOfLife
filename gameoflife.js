@@ -5,7 +5,7 @@ let reproducir = false;
 let copia = [];
 let fotoAnterior = [];
 let contador1 = 0;
-
+let cont = document.getElementById('contador')
 
 
 let velocidad = 0;
@@ -13,23 +13,34 @@ let btn       = document.getElementById('velocidades');
 
 btn.addEventListener('change',(e)=>{
     if(e.target.value === 'lento'){
+        console.log('1')
+        reproducir = false;
+        clearInterval(tiempo);
         velocidad = 1500;
+        reproduccion(velocidad)
     }
 
     else if(e.target.value ==='intermedio'){
-        velocidad = 1000;
+        console.log('2')
+        reproducir = false;
+        clearInterval(tiempo);
+        velocidad = 800;
+        reproduccion(velocidad)
     }
 
-    else if(e.target.value === 'rapido'){
-        console.log('rapido')
+    else if(e.target.value === 'rapido'){  
+        console.log('3')
+        reproducir = false;
+        clearInterval(tiempo);
         velocidad = 100;
+        reproduccion(velocidad)
     }
 }
 )
 
 
 
-function reproduccion() {                     // funcion para cambiar reproducir a true
+function reproduccion(velocidad) {                     // funcion para cambiar reproducir a true
     reproducir = !reproducir
 
     tiempo = setInterval(() => {    // intervalo para reproducir el juego, si reproducir es true llama a la funcion siguiente estado.
@@ -121,7 +132,7 @@ function contador() {                  //cuenta las celulas vivas dentro de todo
             contador1++
         }
     }     
-  const cont = document.getElementById('contador')
+  
   cont.innerHTML= `<div> <span> ${contador1}</span> <span> celulas vivas </span></div>`
 
    
@@ -4170,7 +4181,7 @@ function limpiar() {  //deja todas las celulas en blanco
     reproducir = false;
     velocidad = 0;
     contador1 = 0;
-
+    cont.innerHTML= `<div> <span> ${contador1}</span> <span> celulas vivas </span></div>`
     for (let x = 0; x < columnas; x++) {
         for (let y = 0; y < columnas; y++) {
             let vivas = contarVivas(x, y)
