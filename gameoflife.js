@@ -10,6 +10,7 @@ let fotoAnterior = [];
 setInterval(() => {    // intervalo para reproducir el juego, si reproducir es true llama a la funcion siguiente estado.
     if (reproducir) {
         siguienteEstado()
+        contador()
 
 
     }
