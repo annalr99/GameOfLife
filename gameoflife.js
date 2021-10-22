@@ -1,12 +1,11 @@
-let filas = 50                                         
-let columnas = 50                                                        
+let filas = 80                                   
+let columnas = 80                                                    
 let lado = 10                                                                    
 let reproducir = false;
 let copia = [];
 let fotoAnterior = [];
 let contador1 = 0;
 let cont = document.getElementById('contador')
-
 
 let velocidad = 0;
 let btn       = document.getElementById('velocidades');
@@ -54,7 +53,6 @@ function reproduccion(velocidad) {                     // funcion para cambiar r
 generarTablero()
 
 function generarTablero() {
-    let table = document.createElement('table')
     let tablero = "<table cellpadding=0 cellspacing=0 id= 'tablero' finalborder=5>" //generamos el tablero
     for (let y = 0; y < filas; y++) {
         tablero += "<tr>"
@@ -69,7 +67,7 @@ function generarTablero() {
     tablero + -"</table>"
     let contenedor = document.getElementById("contenedor-tablero")
     contenedor.innerHTML = tablero
-    let tablero = document.getElementById("tablero")
+     tablero = document.getElementById("tablero")
     tablero.style.width = lado * columnas + "px"
     tablero.style.height = lado * filas + "px"
     copiarTablero()                                          //copiamos el tablero principal 
