@@ -1,29 +1,13 @@
-let filas = 50                                          //parseInt( prompt("numero de filas"));
-let columnas = 50                                                              //parseInt( prompt("numnero de columnas"));
-let lado = 10                                                                    //parseInt( prompt("tamanyo celulas"));
+let filas = 50                                         
+let columnas = 50                                                        
+let lado = 10                                                                    
 let reproducir = false;
-let fotografia = [];
+let copia = [];
 let fotoAnterior = [];
 
 
-/*   document.addEventListener("keydown", (e) => {
-    e.preventDefault()
-    switch (e.keyCode) {
-        case 39:
-            siguienteEstado()
-            break;
-        case 32:
-            intercambiarReproduccion();
-            break;
-        case 37:
-            random();
-            break;
-        default:
-            break;
-    }
-})*/
 
-setInterval(() => {
+setInterval(() => {    // intervalo para reproducir el juego, si reproducir es true llama a la funcion siguiente estado.
     if (reproducir) {
         siguienteEstado()
 
@@ -31,7 +15,7 @@ setInterval(() => {
     }
 }, 50)
 
-function intercambiarReproduccion() {
+function reproduccion() {                     // funcion para cambiar reproducir a true
     reproducir = !reproducir
 }
 
@@ -42,7 +26,7 @@ function generarTablero() {
     for (let y = 0; y < filas; y++) {
         html += "<tr>"
         for (let x = 0; x < columnas; x++) {
-            html += `<td id="celula-${x + "-" + y}" onmouseup ="cambiarEstado(${x},${y})">`
+            html += `<td id="celula-${x + "-" + y}" onmouseup ="cambiarEstado(${x},${y})">` //a cada clic que hacemos en la celula cambiamos su estado
             html += "</td>"
         }
         html += "</tr>"
@@ -53,11 +37,11 @@ function generarTablero() {
     let tablero = document.getElementById("tablero")
     tablero.style.width = lado * columnas + "px"
     tablero.style.height = lado * filas + "px"
-    fotografiar()
+    copiarTablero()                                          //copiamos el tablero principal 
 }
 
 
-function cambiarEstado(x, y) {
+function cambiarEstado(x, y) {                        //cambia el estado de las celulas de vivas a muertas 
 
     let celula = document.getElementById(`celula-${x + "-" + y}`)
     if (celula.style.background != "black") {
@@ -68,13 +52,13 @@ function cambiarEstado(x, y) {
 }
 
 
-function fotografiar() {
-    fotografia = []
+function copiarTablero() {                //hace una copia del tablero 
+    copia = []
     for (let x = 0; x < columnas; x++) {
-        fotografia.push([])
+        copia.push([])
         for (let y = 0; y < columnas; y++) {
             let celula = document.getElementById(`celula-${x + "-" + y}`)
-            fotografia[x][y] = celula.style.background == "black"
+            copia[x][y] = celula.style.background == "black"
         }
     }
 
@@ -84,16 +68,18 @@ function fotografiar() {
 
 
 
-function contarVivas(x, y) {
+function contarVivas(x, y) {     //cuenta las celulas vivas alrededor de la celula enviada por paremtro (x,y)
     let vivas = 0
     for (let i = -1; i <= 1; i++) {
-        for (let j = -1; j <= 1; j++) {
-            if (i == 0 && j == 0)
-                continue
-            try {
-                if (fotografia[x + i][y + j])
-                    vivas++
-            } catch (e) { }
+        for (let j = -1; j <= 1; j++) {               
+                if ( i == 0 && j == 0){
+                    continue
+                }
+                else if (typeof copia[x+i] != 'undefined'
+                        && typeof copia[x+i][y+j] != 'undefined'
+                        && copia[x+i][y+j]) {
+                    vivas++;
+                }
             if (vivas > 3) {
                 return vivas
             }
@@ -102,19 +88,38 @@ function contarVivas(x, y) {
     return vivas
 }
 
-function siguienteEstado() {
 
-    fotografiar()
-    fotoAnterior = fotografia;
+function contador() {                  //cuenta las celulas vivas dentro de todo el tablero
+    copia = []
+    let contador1 = 0;
+    for (let x = 0; x < columnas; x++) {
+        copia.push([])
+        for (let y = 0; y < columnas; y++) {
+            let celula = document.getElementById(`celula-${x + "-" + y}`)
+            copia[x][y] = celula.style.background == "black"
+            if( copia[x][y])
+            contador1++
+        }
+    }     
+  const cont = document.getElementById('contador')
+  cont.innerHTML= `<div> <span> ${contador1}</span> <span> celulas vivas </span></div>`
+
+   
+
+}
+
+
+function siguienteEstado() {       //cambia el estado de las celulas dependiendo de las reglas establecidas
+    copiarTablero() 
     for (let x = 0; x < columnas; x++) {
         for (let y = 0; y < columnas; y++) {
             let vivas = contarVivas(x, y)
             let celula = document.getElementById(`celula-${x + "-" + y}`)
-            if (fotografia[x][y]) {//celula esta viva
-                if (vivas < 2 || vivas > 3)
-                    celula.style.background = "white"//muere por sobrepoblacion
-            } else {//celula esta muerta
-                if (vivas == 3)
+            if (copia[x][y]) { //celula esta viva
+                if (vivas < 2 || vivas > 3) // si tiene menos de dos celulas o mas de 3 celulas vivas muere
+                    celula.style.background = "white"
+            } else {  //celula esta muerta
+                if (vivas == 3) //si tiene 3 celulas vivas a su alrededor revive
                     celula.style.background = "black"
             }
         }
@@ -123,23 +128,7 @@ function siguienteEstado() {
 }
 
 
-function estadoAnterior() {
-    fotoAnterior = fotografia;
-
-    for (let x = 0; x < columnas; x++) {
-        for (let y = 0; y < columnas; y++) {
-            let celula = document.getElementById(`celula-${x + "-" + y}`)
-            if (fotoAnterior[x][y]) {
-                celula.style.background = "black"
-            } else {
-                celula.style.background = "white"
-            }
-        }
-    }
-
-}
-
-function random() {
+function random() {  //pinta el tablero aleatoriamente
     for (let x = 0; x < columnas; x++) {
         for (let y = 0; y < filas; y++) {
             if (Math.random() < 0.3) {
@@ -149,8 +138,8 @@ function random() {
     }
 }
 
-function cañon() {
-    let cañon =[
+function cannon() {  //patron predefinido de un cañon infinito para pintar en el tablero
+    let canon =[
         [
             false,
             false,
@@ -1525,7 +1514,7 @@ function cañon() {
         for (let y = 0; y < columnas; y++) {
             let vivas = contarVivas(x, y)
             let celula = document.getElementById(`celula-${x + "-" + y}`)
-            if (!cañon[x][y]) {
+            if (!canon[x][y]) {
                 celula.style.background = "white"
             } else {
                 celula.style.background = "black"
@@ -1538,7 +1527,7 @@ function cañon() {
 
 
 
-function patrones() {
+function patrones() { 
     let patrones= [
         [
             false,
@@ -4156,13 +4145,13 @@ function patrones() {
 
 }
 
-function limpiar() {
+function limpiar() {  //deja todas las celulas en blanco
 
     for (let x = 0; x < columnas; x++) {
         for (let y = 0; y < columnas; y++) {
             let vivas = contarVivas(x, y)
             let celula = document.getElementById(`celula-${x + "-" + y}`)
-            if (fotografia[x][y]) {
+            if (copia[x][y]) {
                 celula.style.background = "white"
             } else {
                 celula.style.background = "white"
