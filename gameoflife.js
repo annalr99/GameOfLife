@@ -4,9 +4,7 @@ let lado = 10
 let reproducir = false;
 let copia = [];
 let fotoAnterior = [];
-let contador1 = 0;
-let cont = document.getElementById('contador')
-
+const cont = document.getElementById('contador')
 let velocidad = 0;
 let btn       = document.getElementById('velocidades');
 
@@ -125,6 +123,7 @@ function contarVivas(x, y) {     //cuenta las celulas vivas alrededor de la celu
 
 
 function contador() {                  //cuenta las celulas vivas dentro de todo el tablero
+    let contador1 = 0 ;
     copia = []
     for (let x = 0; x < columnas; x++) {
         copia.push([])
@@ -135,7 +134,7 @@ function contador() {                  //cuenta las celulas vivas dentro de todo
             contador1++
         }
     }     
-  
+ 
   cont.innerHTML= `<div> <span> ${contador1}</span> <span> celulas vivas </span></div>`
 
    
@@ -4185,7 +4184,7 @@ function limpiar() {  //deja todas las celulas en blanco
     clearInterval(tiempo);
     reproducir = false;
     velocidad = 0;
-    contador1 = 0;
+   
     cont.innerHTML= `<div> <span> ${contador1}</span> <span> celulas vivas </span></div>`
     for (let x = 0; x < columnas; x++) {
         for (let y = 0; y < columnas; y++) {
