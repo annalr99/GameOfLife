@@ -4,20 +4,40 @@ let lado = 10
 let reproducir = false;
 let copia = [];
 let fotoAnterior = [];
+let contador1 = 0;
 
 
 
-setInterval(() => {    // intervalo para reproducir el juego, si reproducir es true llama a la funcion siguiente estado.
-    if (reproducir) {
-        siguienteEstado()
-        contador()
+let velocidad = 0;
+let btn       = document.getElementById('velocidades');
 
-
+btn.addEventListener('change',(e)=>{
+    if(e.target.value === 'lento'){
+        velocidad = 1500;
     }
-}, 50)
+
+    else if(e.target.value ==='intermedio'){
+        velocidad = 1000;
+    }
+
+    else if(e.target.value === 'rapido'){
+        console.log('rapido')
+        velocidad = 100;
+    }
+}
+)
+
+
 
 function reproduccion() {                     // funcion para cambiar reproducir a true
     reproducir = !reproducir
+
+    tiempo = setInterval(() => {    // intervalo para reproducir el juego, si reproducir es true llama a la funcion siguiente estado.
+        if (reproducir) {
+            siguienteEstado()
+            contador()
+        }
+    }, velocidad)
 }
 
 generarTablero()
@@ -92,7 +112,6 @@ function contarVivas(x, y) {     //cuenta las celulas vivas alrededor de la celu
 
 function contador() {                  //cuenta las celulas vivas dentro de todo el tablero
     copia = []
-    let contador1 = 0;
     for (let x = 0; x < columnas; x++) {
         copia.push([])
         for (let y = 0; y < columnas; y++) {
@@ -4147,6 +4166,10 @@ function patrones() {
 }
 
 function limpiar() {  //deja todas las celulas en blanco
+    clearInterval(tiempo);
+    reproducir = false;
+    velocidad = 0;
+    contador1 = 0;
 
     for (let x = 0; x < columnas; x++) {
         for (let y = 0; y < columnas; y++) {
