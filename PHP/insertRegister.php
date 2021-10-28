@@ -8,11 +8,11 @@ if (!$connectionDatabase) {
     echo "No se ha podido conectar a la base de datos";
 }
 else {
-
-    $username = $_GET['username'];
+    $name = $_GET['name'];
+    $last_name = $_GET['last_name']; 
     $password = $_GET['password'];
-    $name = ['name'];
-    $last_name = ['last_name']; 
+    $username = $_GET['username'];
+    $email = $_GET['email'];
     
     
     $queryVerification = $connectionDatabase->prepare("SELECT Nickname FROM USUARIOS WHERE Nickname = :Nickname ");
@@ -25,12 +25,13 @@ else {
         echo "NO REGISTRE";
         }
     else{
-        $instertQuery = $connectionDatabase->prepare("INSERT INTO USUARIOS VALUES (:last_name, :nickname, :name, :password)");
-        $instertQuery->bindParam(':last_name', $last_name);
-        $instertQuery->bindParam(':name', $name);
-        $instertQuery->bindParam(':nickname', $username);
-        $instertQuery->bindParam(':password', $password);
-        $instertQuery->execute();
+        $insertQuery = $connectionDatabase->prepare("INSERT INTO USUARIOS  VALUES (:nickname, :password, :name, :last_name, :email)");
+        $insertQuery->bindParam( ':nickname' , $username) ;
+        $insertQuery->bindParam( ':password' , $password );
+        $insertQuery->bindParam( ':name' , $name );
+        $insertQuery->bindParam( ':last_name' , $last_name );
+        $insertQuery->bindParam( ':email' , $email );
+        $insertQuery->execute();
         //$_SESSION['register']='new';
         //header("location:register.php");
         echo "GOOD JOB";
