@@ -29,14 +29,13 @@ else {
         print_r($resultQuery[1]);
         echo "<br>";
         if (password_verify($password, $resultQuery[1])){
-            /*$_SESSION['validation']='yes';
-            header("location:gameoflife.html");*/
-            echo "GOOD JOB";
+            $_SESSION['validation']='yes';
+            header("location:gameoflife.html");
         }
         else{
-            /*$_SESSION['validation']='no';
-            header("location:login.html");  */
-            echo "FUCK";
+            $_SESSION['validation']='no';
+            header("location:login.html");  
+
         }
         
     }
