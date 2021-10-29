@@ -15,9 +15,9 @@ Opciones de juego:
 Espero que les guste nuestra primera version ! 
 
 
-Vesion 2 
+Version 2 
 
-Mejoras de nuestro!
+Mejoras de nuestro proyecto!
 
 Opciones de juego nuevas:
 	- Patrones infinitos : Mapa de universo con celulas que tienen patrones infinitos
