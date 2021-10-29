@@ -1,12 +1,14 @@
-let filas = 80                                   
-let columnas = 80                                                    
-let lado = 10                                                                    
-let reproducir = false;
-let copia = [];
+let filas    = 50                                   
+let columnas = 50                                                    
+let lado     = 10                                                                    
+let reproducir   = false;
+let copia        = [];
 let fotoAnterior = [];
-const cont = document.getElementById('contador')
-let velocidad = 0;
-let btn       = document.getElementById('velocidades');
+const cont       = document.getElementById('numeroVIVAS')
+let velocidad    = 0;
+let btn          = document.getElementById('velocidades');
+let contador1    = 0
+
 
 btn.addEventListener('change',(e)=>{
     if(e.target.value === 'lento'){
@@ -29,7 +31,7 @@ btn.addEventListener('change',(e)=>{
         console.log('3')
         reproducir = false;
         clearInterval(tiempo);
-        velocidad = 100;
+        velocidad = 50;
         reproduccion(velocidad)
     }
 }
@@ -122,8 +124,8 @@ function contarVivas(x, y) {     //cuenta las celulas vivas alrededor de la celu
 }
 
 
-function contador() {                  //cuenta las celulas vivas dentro de todo el tablero
-    let contador1 = 0 ;
+function contador(contador1) {                  //cuenta las celulas vivas dentro de todo el tablero
+    contador1 = 0
     copia = []
     for (let x = 0; x < columnas; x++) {
         copia.push([])
@@ -135,9 +137,7 @@ function contador() {                  //cuenta las celulas vivas dentro de todo
         }
     }     
  
-  cont.innerHTML= `<div> <span> ${contador1}</span> <span> celulas vivas </span></div>`
-
-   
+  cont.innerHTML= contador1;
 
 }
 
@@ -4184,8 +4184,9 @@ function limpiar() {  //deja todas las celulas en blanco
     clearInterval(tiempo);
     reproducir = false;
     velocidad = 0;
+    
    
-    cont.innerHTML= `<div> <span> ${contador1}</span> <span> celulas vivas </span></div>`
+    cont.innerHTML= contador1
     for (let x = 0; x < columnas; x++) {
         for (let y = 0; y < columnas; y++) {
             let vivas = contarVivas(x, y)
