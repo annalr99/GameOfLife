@@ -1,52 +1,58 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Juego de la vida</title>
-
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 
 <body>
-    <!--   CSS  -->
-
-    <style>
-    
-      
-
-        td {
-            border: #eee solid 1px;
-        }
-    </style>
-
-    <!--   HTML  -->
-
-   
-
     <header>
+        <div id="contador">
+            <span>celulas vivas</span>
+            <span id="numeroVIVAS">0</span>
+        </div>
+        <div>
+            <h1 class="titulo"> Game Of Life</h1>
 
-        <h1>Game Of Life</h1>
-
-        <br>
-        <input type='button' onClick='random()' Value='random'/>
-        <input type='button' onClick='intercambiarReproduccion()' Value='Play/Stop' />
-        <input type='button' onClick='estadoAnterior()' Value='<<Estado anterior'/>
-        <input type='button' onClick='siguienteEstado()' Value='siguiente Estado>>'/>
-        <input type='button' onClick='cañon()' Value='cañon infinito'/>
-        <input type='button' onClick='patrones()' Value='patrones infinitos'/>
-        <input type='button' onClick='limpiar()' Value='limpiar'/>
-       
-        
-       
-
-
+        </div>
+         <div class="cont-velo">
+            <label for="velocidades">velocidades</label>
+            <select  id="velocidades">
+                <option value="rapido">Rapido</option>
+                <option value="intermedio">Intermedio</option>
+                <option value="lento">Lento</option>
+           </select>
+        </div>
     </header>
 
 
-    <div id="contenedor-tablero">
- 
+   
+
+   
+    
+    <div class="contenedor_tablero">
+        <div id="contenedor-tablero"></div>
     </div>
+
+    <footer>   
+        <div class="botones">
+
+            <input class="btn red" type='button' onClick='random()' Value='random'/>
+            <input class="btn red" type='button' onClick='reproduccion()' Value='Play/Stop' />
+            <input class="btn red" type='button' onClick='siguienteEstado()' Value='siguiente Estado>>'/>
+            <input class="btn red" type='button' onClick='cannon()' Value='cañon infinito'/>
+            <input class="btn red" type='button' onClick='patrones()' Value='patrones infinitos'/>
+            <input class="btn red" type='button' onClick='limpiar()' Value='limpiar'/>
+
+        </div>
+    </footer>
+    
+
+
     <!--   JS  -->
 
     <script src="gameoflife.js"></script>

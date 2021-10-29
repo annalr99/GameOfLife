@@ -1,0 +1,88 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+*{
+    margin:0;
+    padding: 0;
+}
+
+header{
+    width: 100vw;
+    background-color: black;
+    display: flex;
+    justify-content: space-around;
+}
+
+#contador{
+    color:white;
+ 
+    align-self: center;
+    
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    
+}
+label{color:white;}
+.cont-velo{
+    align-self: center;
+    display: flex;
+    flex-direction: column;
+}
+body{
+ font-family: 'Open Sans', 'sans-serif';;
+}
+.contenedor_tablero{
+    display: flex;
+    justify-content: center;
+}
+
+.titulo{
+            
+    text-align: center;
+    background-color: black;
+    color: white;
+    padding: 20px;
+    font-size: 35px;
+
+}
+
+.botones{
+    width: 100%;
+    background-color: rgb(0, 0, 0);
+    display: flex;
+    justify-content: center;
+    
+}
+
+.botones .btn{
+
+    cursor: pointer;
+    margin: 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    padding: 10px;
+    font-size: 22px;
+    transition: .3s;
+    display: inline-block;
+}
+
+.red {
+    color: #fff;
+    background-color: #e74c3c;
+    border: 2px #e74c3c solid;
+  }
+  
+  .red:hover {
+    color: #e62d19;
+    background-color: rgb(199, 199, 199);
+  }
+
+
+
+
+input{
+    margin: 10px;
+}
+
+td {
+    border: #eee solid 1px;
+}
