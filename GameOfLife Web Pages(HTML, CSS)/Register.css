@@ -220,8 +220,3 @@ input:required:invalid {
     opacity: 0.5;
     text: alpha(opacity=100);
 }
-
-input:valid {
-    background-color: greenyellow;
-    opacity: 0.5;
-  }
