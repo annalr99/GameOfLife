@@ -28,7 +28,7 @@ else {
         echo "<br>";
         print_r($resultQuery[1]);
         echo "<br>";
-        if (password_verify($resultQuery[1], PASSWORD_DEFAULT)){
+        if (password_verify($password, $resultQuery[1])){
             /*$_SESSION['validation']='yes';
             header("location:gameoflife.html");*/
             echo "GOOD JOB";
@@ -41,5 +41,7 @@ else {
         
     }
 }
+
+
 
  ?>
