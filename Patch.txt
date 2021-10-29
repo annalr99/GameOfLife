@@ -13,3 +13,20 @@ Opciones de juego:
 	· Cañon infinito : Mapa de universo de un cañon.
 
 Espero que les guste nuestra primera version ! 
+
+
+Vesion 2 
+
+Mejoras de nuestro!
+
+Opciones de juego nuevas:
+	- Patrones infinitos : Mapa de universo con celulas que tienen patrones infinitos
+	- Anterior Estado : Eliminado.
+
+Nuevas mejoras visuales:
+	- Nuevo estilo de pàgina principal del juego.
+	- Boton de cambio de velocidad: Lento, Intermedio y Rapido.
+	- Contador de Celulas Vivas
+
+Hemos agregado pàgina de Login y Registro para poder guardar tus partidas !!
+Esperamos que les guste la Version 2.0 y esperen con muchas ganas la siguiente !!
