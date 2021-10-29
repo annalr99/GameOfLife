@@ -13,7 +13,8 @@ else {
     $password = $_GET['password'];
     $username = $_GET['username'];
     $email = $_GET['email'];
-    
+    $encryptedPassword = password_hash($password, PASSWORD_DEFAULT);
+
     
     $queryVerification = $connectionDatabase->prepare("SELECT Nickname FROM USUARIOS WHERE Nickname = :Nickname ");
     $queryVerification->bindParam( ':Nickname' ,$username);
@@ -27,7 +28,7 @@ else {
     else{
         $insertQuery = $connectionDatabase->prepare("INSERT INTO USUARIOS  VALUES (:nickname, :password, :name, :last_name, :email)");
         $insertQuery->bindParam( ':nickname' , $username) ;
-        $insertQuery->bindParam( ':password' , $password );
+        $insertQuery->bindParam( ':password' , $encryptedPassword );
         $insertQuery->bindParam( ':name' , $name );
         $insertQuery->bindParam( ':last_name' , $last_name );
         $insertQuery->bindParam( ':email' , $email );

@@ -16,18 +16,27 @@ else {
         header("location:login.html");
     }
     else{
-        $queryVerification = $connectionDatabase->prepare("SELECT Nickname , Password FROM USUARIOS WHERE Nickname = :Nickname AND Password = :Password ");
+        $queryVerification = $connectionDatabase->prepare("SELECT Nickname , Password FROM USUARIOS WHERE Nickname = :Nickname");
         $queryVerification->bindParam( ':Nickname' ,$username);
-        $queryVerification->bindParam( ':Password' ,$password);
+        //$queryVerification->bindParam( ':Password' ,password_verify($password, PASSWORD_DEFAULT));
         $queryVerification->execute();
         $rowsQueryVerification = $queryVerification->rowCount();
-        if ($rowsQueryVerification == 1){
-            $_SESSION['validation']='yes';
-            header("location:gameoflife.html");
+        $resultQuery = $queryVerification->fetch(PDO::FETCH_BOTH);
+        
+        echo "<br>";
+        print_r($resultQuery);
+        echo "<br>";
+        print_r($resultQuery[1]);
+        echo "<br>";
+        if (password_verify($resultQuery[1], PASSWORD_DEFAULT)){
+            /*$_SESSION['validation']='yes';
+            header("location:gameoflife.html");*/
+            echo "GOOD JOB";
         }
         else{
-            $_SESSION['validation']='no';
-            header("location:login.html");  
+            /*$_SESSION['validation']='no';
+            header("location:login.html");  */
+            echo "FUCK";
         }
         
     }
