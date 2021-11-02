@@ -15,15 +15,16 @@ else {
     $email = $_GET['email'];
     $encryptedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-    
+
     $queryVerification = $connectionDatabase->prepare("SELECT Nickname FROM USUARIOS WHERE Nickname = :Nickname ");
     $queryVerification->bindParam( ':Nickname' ,$username);
     $queryVerification->execute();
     $rowsQueryVerification = $queryVerification->rowCount();
     if ($rowsQueryVerification == 1){
-        //$_SESSION['register']='yes';
-        //header("location:register.php");
-        echo "NO REGISTRE";
+        $_SESSION['error']=2;
+        header("location:errorControl.php");
+        //header("location:../register.php");
+  
         }
     else{
         $insertQuery = $connectionDatabase->prepare("INSERT INTO USUARIOS  VALUES (:nickname, :password, :name, :last_name, :email)");
@@ -33,9 +34,9 @@ else {
         $insertQuery->bindParam( ':last_name' , $last_name );
         $insertQuery->bindParam( ':email' , $email );
         $insertQuery->execute();
-        //$_SESSION['register']='new';
-        //header("location:register.php");
-        echo "GOOD JOB";
+        $_SESSION['register']='new';
+        header("location:../gameoflife.html");
+    
         }
         
     

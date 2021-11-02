@@ -22,21 +22,19 @@ else {
         $queryVerification->execute();
         $rowsQueryVerification = $queryVerification->rowCount();
         $resultQuery = $queryVerification->fetch(PDO::FETCH_BOTH);
+
         
-        echo "<br>";
-        print_r($resultQuery);
-        echo "<br>";
-        print_r($resultQuery[1]);
-        echo "<br>";
-        if (password_verify($password, $resultQuery[1])){
+        if (password_verify($password, $resultQuery[1]) && $rowsQueryVerification==1){
             $_SESSION['validation']='yes';
-            header("location:gameoflife.html");
+            header("location:../gameoflife.html");
         }
         else{
             $_SESSION['validation']='no';
-            header("location:login.html");  
+            $_SESSION['error']=1;
+            header("location:errorControl.php");
+            //header("location:../login.php");  
 
-        }
+        } 
         
     }
 }
