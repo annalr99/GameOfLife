@@ -9,9 +9,8 @@ $errorCode = $_SESSION['error'];
 
 switch ($errorCode) {
     case 1:
-        echo "error no login";
-        $_SESSION['error']=0;
-        break;
+        $_SESSION['error']="error no login";
+        header("location:../login.php");
     case 2:
         echo "error ya registrado";
         $_SESSION['error']=0;
@@ -22,3 +21,5 @@ switch ($errorCode) {
 }
 
 ?>
+
+
