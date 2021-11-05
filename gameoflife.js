@@ -5,34 +5,31 @@ let reproducir   = false;
 let copia        = [];
 let fotoAnterior = [];
 const cont       = document.getElementById('numeroVIVAS')
-let velocidad    = 0;
 let btn          = document.getElementById('velocidades');
 let contador1    = 0
-
+//velocidades predefinidas
+const lento      = 1200;
+const intermedio =  900;
+const rapido     =  600;
+const velocidadInicial = 600;
 
 btn.addEventListener('change',(e)=>{
     if(e.target.value === 'lento'){
-        console.log('1')
         reproducir = false;
         clearInterval(tiempo);
-        velocidad = 1500;
-        reproduccion(velocidad)
+        reproduccion(lento)
     }
 
     else if(e.target.value ==='intermedio'){
-        console.log('2')
         reproducir = false;
         clearInterval(tiempo);
-        velocidad = 800;
-        reproduccion(velocidad)
+        reproduccion(intermedio)
     }
 
     else if(e.target.value === 'rapido'){  
-        console.log('3')
         reproducir = false;
         clearInterval(tiempo);
-        velocidad = 50;
-        reproduccion(velocidad)
+        reproduccion(rapido)
     }
 }
 )
