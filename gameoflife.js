@@ -4,7 +4,11 @@ let lado     = 10
 let reproducir   = false;
 let copia        = [];
 let fotoAnterior = [];
-const cont       = document.getElementById('numeroVIVAS')
+const cont       = document.getElementById('numeroVIVAS');
+let boton_color  = document.getElementById('color');
+let vivaCelula = "";
+let muertaCelula  = "";
+
 let btn          = document.getElementById('velocidades');
 let contador1    = 0
 //velocidades predefinidas
@@ -12,6 +16,20 @@ const lento      = 1200;
 const intermedio =  900;
 const rapido     =  600;
 const velocidadInicial = 600;
+
+function bordes(){
+    celdas.forEach((celda)=>{
+        celda.classList.toggle('bordes')
+    })
+}
+
+boton_color.addEventListener('click', ()=>{
+    vivaCelula = prompt('ingrese color celula Viva');
+    muertaCelula = prompt('ingrese color celula Muerta');
+    celdas.forEach(element => {
+        element.style.background = muertaCelula
+    });
+})
 
 btn.addEventListener('change',(e)=>{
     if(e.target.value === 'lento'){
@@ -48,7 +66,7 @@ function reproduccion(velocidad) {                     // funcion para cambiar r
 }
 
 generarTablero()
-
+let celdas     = document.querySelectorAll('td');
 function generarTablero() {
     let tablero = "<table cellpadding=0 cellspacing=0 id= 'tablero' finalborder=5>" //generamos el tablero
     for (let y = 0; y < filas; y++) {
@@ -64,9 +82,10 @@ function generarTablero() {
     tablero + -"</table>"
     let contenedor = document.getElementById("contenedor-tablero")
     contenedor.innerHTML = tablero
-     tablero = document.getElementById("tablero")
+    tablero = document.getElementById("tablero")   
     tablero.style.width = lado * columnas + "px"
     tablero.style.height = lado * filas + "px"
+    
     copiarTablero()                                          //copiamos el tablero principal 
 }
 
@@ -76,10 +95,10 @@ function cambiarEstado(x, y) {                        //cambia el estado de las 
 
 
     let celula = document.getElementById(`celula-${x + "-" + y}`)
-    if (celula.style.background != "black") {
-        celula.style.background = "black"
+    if (celula.style.background != vivaCelula) {
+        celula.style.background = vivaCelula;
     } else {
-        celula.style.background = "white"
+        celula.style.background = muertaCelula;
     }
 }
 
@@ -90,7 +109,7 @@ function copiarTablero() {                //hace una copia del tablero
         copia.push([])
         for (let y = 0; y < columnas; y++) {
             let celula = document.getElementById(`celula-${x + "-" + y}`)
-            copia[x][y] = celula.style.background == "black"
+            copia[x][y] = celula.style.background == vivaCelula
         }
     }
 
@@ -128,7 +147,7 @@ function contador(contador1) {                  //cuenta las celulas vivas dentr
         copia.push([])
         for (let y = 0; y < columnas; y++) {
             let celula = document.getElementById(`celula-${x + "-" + y}`)
-            copia[x][y] = celula.style.background == "black"
+            copia[x][y] = celula.style.background == vivaCelula
             if( copia[x][y])
             contador1++
         }
@@ -147,10 +166,10 @@ function siguienteEstado() {       //cambia el estado de las celulas dependiendo
             let celula = document.getElementById(`celula-${x + "-" + y}`)
             if (copia[x][y]) { //celula esta viva
                 if (vivas < 2 || vivas > 3) // si tiene menos de dos celulas o mas de 3 celulas vivas muere
-                    celula.style.background = "white"
+                    celula.style.background = muertaCelula;
             } else {  //celula esta muerta
                 if (vivas == 3) //si tiene 3 celulas vivas a su alrededor revive
-                    celula.style.background = "black"
+                    celula.style.background = vivaCelula
             }
         }
     }
@@ -181,9 +200,9 @@ function limpiar() {  //deja todas las celulas en blanco
             let vivas = contarVivas(x, y)
             let celula = document.getElementById(`celula-${x + "-" + y}`)
             if (copia[x][y]) {
-                celula.style.background = "white"
+                celula.style.background = muertaCelula;
             } else {
-                celula.style.background = "white"
+                celula.style.background = muertaCelula;
             }
         }
     }
@@ -1569,9 +1588,9 @@ function cannon() {  //patron predefinido de un cañon infinito para pintar en e
             let vivas = contarVivas(x, y)
             let celula = document.getElementById(`celula-${x + "-" + y}`)
             if (!canon[x][y]) {
-                celula.style.background = "white"
+                celula.style.background = muertaCelula;
             } else {
-                celula.style.background = "black"
+                celula.style.background = vivaCelula
             }
         }
     }
@@ -4190,9 +4209,9 @@ function patrones() {
             let vivas = contarVivas(x, y)
             let celula = document.getElementById(`celula-${x + "-" + y}`)
             if (!patrones[x][y]) {
-                celula.style.background = "white"
+                celula.style.background = muertaCelula;
             } else {
-                celula.style.background = "black"
+                celula.style.background = vivaCelula
             }
         }
     }

@@ -7,25 +7,28 @@
     <title>Juego de la vida</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-
-
 <body>
     <header>
         <div id="contador">
             <span>celulas vivas</span>
             <span id="numeroVIVAS">0</span>
         </div>
-        <div>
+        <div class="cabecera">
             <h1 class="titulo"> Game Of Life</h1>
 
         </div>
          <div class="cont-velo">
-            <label for="velocidades">velocidades</label>
-            <select  id="velocidades">
-                <option value="rapido">Rapido</option>
-                <option value="intermedio">Intermedio</option>
-                <option value="lento">Lento</option>
-           </select>
+            <div><button class="btn red" id="color">Colores</button></div>
+            <div class="caja_velocidades" class="btn">
+                <button class="btn red">
+                <label for="velocidades">velocidades</label>
+                <select  id="velocidades">
+                    <option value="rapido">Rapido</option>
+                    <option value="intermedio">Intermedio</option>
+                    <option value="lento">Lento</option>
+               </select>
+              </button>
+            </div>
         </div>
     </header>
 
@@ -46,7 +49,9 @@
             <input class="btn red" type='button' onClick='siguienteEstado()' Value='siguiente Estado>>'/>
             <input class="btn red" type='button' onClick='cannon()' Value='cañon infinito'/>
             <input class="btn red" type='button' onClick='patrones()' Value='patrones infinitos'/>
+            <input class="btn red" type='button' onClick='bordes()' Value='bordes'/>
             <input class="btn red" type='button' onClick='limpiar()' Value='limpiar'/>
+            
 
         </div>
     </footer>
